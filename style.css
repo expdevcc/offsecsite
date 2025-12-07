@@ -14,22 +14,27 @@
     padding: 0;
 }
 
+/* 1. Smooth Scroll Özelliği */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: var(--font-mono);
     line-height: 1.6;
-    overflow-x: hidden; /* Yatay kaymayı engelle */
+    overflow-x: hidden;
 }
 
 /* Kapsayıcı ve Responsiveness */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 50px 20px;
+    padding: 80px 20px; /* Bölümler arası boşluğu artırdık */
 }
 
-/* Header ve Navigasyon */
+/* Header ve Navigasyon (Öncekiyle aynı) */
 header {
     background: rgba(10, 10, 10, 0.9);
     position: fixed;
@@ -88,7 +93,7 @@ nav a:hover {
     text-shadow: none;
 }
 
-/* Hero Bölümü (Giriş) */
+/* Hero Bölümü */
 #particles-js {
     position: fixed;
     top: 0;
@@ -106,7 +111,7 @@ nav a:hover {
     text-align: center;
     position: relative;
     padding-top: 60px;
-    z-index: 2; /* İçerik parçacıkların üstünde olsun */
+    z-index: 2;
 }
 
 .hero-content h1 {
@@ -116,12 +121,7 @@ nav a:hover {
 }
 
 .hero-content h1 span.typing-text {
-    border-right: 2px solid var(--primary-color); /* Terminal imleci */
-}
-
-.hero-content p {
-    font-size: 1.2em;
-    opacity: 0.8;
+    border-right: 2px solid var(--primary-color);
 }
 
 /* Genel Başlıklar */
@@ -140,7 +140,7 @@ h2 {
     gap: 30px;
 }
 
-/* Kart ve Hover Animasyonları */
+/* Kart ve Hover Animasyonları (Öncekiyle aynı) */
 .skill-item, .project-card, .blog-post {
     background: #151515;
     padding: 30px;
@@ -151,29 +151,23 @@ h2 {
 }
 
 .hover-effect:hover {
-    transform: translateY(-5px); /* Hafif yukarı kayma */
-    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3), 0 0 20px var(--primary-color); /* Neon parlama */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3), 0 0 20px var(--primary-color);
 }
 
-.skill-item h3, .project-card h3, .blog-post h3 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
+/* 2. Reveal Animasyonu için CSS Tanımlamaları */
+.reveal-section {
+    opacity: 0; /* Başlangıçta gizle */
+    transform: translateY(50px); /* Alttan yukarı kayma için başlangıç pozisyonu */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.blog-post .meta {
-    font-size: 0.85em;
-    color: var(--secondary-color);
-    margin-bottom: 10px;
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0); /* Hedef pozisyon */
 }
 
-.blog-post .read-more {
-    display: inline-block;
-    margin-top: 15px;
-    color: var(--accent-color);
-    text-decoration: none;
-}
-
-/* Buton Stili */
+/* Buton Stili (Öncekiyle aynı) */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -196,7 +190,7 @@ h2 {
     box-shadow: 0 0 10px var(--primary-color);
 }
 
-/* Footer */
+/* Footer (Öncekiyle aynı) */
 footer {
     text-align: center;
     padding: 20px 0;
@@ -205,27 +199,11 @@ footer {
     color: var(--secondary-color);
 }
 
-/* Ek Animasyonlar: Glitch Efekti (Opsiyonel olarak kullanılabilir) */
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-.glitch-text {
-    display: inline-block;
-    animation: glitch 1s infinite alternate;
-}
-
 /* --------------------
    Responsive Tasarım
    -------------------- */
 @media (max-width: 768px) {
-    
-    /* Navigasyonu dikey yap veya açılır menüye çevir */
+    /* Mobil uyumluluk için önceki düzenlemeler */
     nav {
         flex-direction: column;
         text-align: center;
@@ -250,10 +228,10 @@ footer {
     }
 
     .container {
-        padding: 30px 15px;
+        padding: 40px 15px;
     }
 
     .skills-grid, .projects-grid, .blog-grid {
-        grid-template-columns: 1fr; /* Tek sütun */
+        grid-template-columns: 1fr;
     }
 }

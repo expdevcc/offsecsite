@@ -82,36 +82,57 @@ particlesJS("particles-js", {
 const typingTextElement = document.querySelector('.typing-text');
 const originalText = typingTextElement.getAttribute('data-text');
 let charIndex = 0;
-let isDeleting = false;
-const typingSpeed = 100; // Yazma hızı (ms)
-const deletingSpeed = 50; // Silme hızı (ms)
-const pauseTime = 2000; // Cümle bittikten sonra bekleme süresi (ms)
+const typingSpeed = 100;
 
 function type() {
     const currentText = originalText.substring(0, charIndex);
     typingTextElement.textContent = currentText;
 
-    if (!isDeleting && charIndex < originalText.length) {
-        // Yazma
+    if (charIndex < originalText.length) {
         charIndex++;
         setTimeout(type, typingSpeed);
-    } else if (isDeleting && charIndex > 0) {
-        // Silme (Bu örnekte sadece bir kez yazıp durmasını istiyorsanız bu kısmı silebilirsiniz)
-        charIndex--;
-        setTimeout(type, deletingSpeed);
-    } else if (!isDeleting && charIndex === originalText.length) {
-        // Yazma bitti, durakla
-        // isDeleting = true; // Tekrar silmek ve döngüye girmek için bu satırı etkinleştirin
-        // setTimeout(type, pauseTime);
-    } else if (isDeleting && charIndex === 0) {
-        // Silme bitti, tekrar başla
-        isDeleting = false;
-        setTimeout(type, 500);
-    }
+    } 
+    // Yazma bittiğinde, imlecin yanıp sönmesi CSS'teki border ile sağlanmıştır.
 }
 
-// Efekti başlat
 document.addEventListener('DOMContentLoaded', () => {
-    // Sadece bir kez yazıp dursun diye ayarladım.
+    // Sadece bir kez yazıp dursun diye ayarlandı.
     setTimeout(type, 500); 
+    initializeScrollReveal(); // Sayfa yüklendiğinde reveal animasyonlarını başlat
 });
+
+
+// ===================================
+// 3. Bölüm Göründüğünde Reveal Animasyonu
+// ===================================
+
+function initializeScrollReveal() {
+    const sectionsToReveal = document.querySelectorAll('.reveal-section');
+
+    // Intersection Observer ayarları
+    const observerOptions = {
+        root: null, // viewport'u kök olarak kullan
+        rootMargin: '0px',
+        threshold: 0.1 // %10'u görünür olduğunda tetikle
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Bölüm görünür hale geldi
+                entry.target.classList.add('is-visible');
+                // Animasyon sadece bir kez çalışacağı için izlemeyi durdur
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Tüm .reveal-section elementlerini izlemeye başla
+    sectionsToReveal.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// NOT: Smooth Scroll (Yumuşak Kaydırma) için JavaScript kodu gerekmez.
+// CSS'teki 'scroll-behavior: smooth;' özelliği, tüm dahili navigasyon (navbar linkleri) 
+// tıklamaları için bu işlevi otomatik olarak yerine getirir.

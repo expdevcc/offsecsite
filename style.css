@@ -1,0 +1,259 @@
+/* Genel Ayarlar */
+:root {
+    --primary-color: #00ff00; /* Neon Yeşil */
+    --secondary-color: #009900;
+    --background-color: #0a0a0a; /* Çok Koyu Gri/Siyah */
+    --text-color: #e0e0e0;
+    --accent-color: #00ffff; /* Mavi Neon vurgu */
+    --font-mono: 'Roboto Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    overflow-x: hidden; /* Yatay kaymayı engelle */
+}
+
+/* Kapsayıcı ve Responsiveness */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+/* Header ve Navigasyon */
+header {
+    background: rgba(10, 10, 10, 0.9);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 255, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo .glitch-text {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+    padding: 5px 0;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+.cv-link {
+    border: 1px solid var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cv-link:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-shadow: none;
+}
+
+/* Hero Bölümü (Giriş) */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 60px;
+    z-index: 2; /* İçerik parçacıkların üstünde olsun */
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.hero-content h1 span.typing-text {
+    border-right: 2px solid var(--primary-color); /* Terminal imleci */
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+/* Genel Başlıklar */
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+}
+
+/* Grid Düzenleri */
+.skills-grid, .projects-grid, .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Kart ve Hover Animasyonları */
+.skill-item, .project-card, .blog-post {
+    background: #151515;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px); /* Hafif yukarı kayma */
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3), 0 0 20px var(--primary-color); /* Neon parlama */
+}
+
+.skill-item h3, .project-card h3, .blog-post h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.blog-post .meta {
+    font-size: 0.85em;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.blog-post .read-more {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Buton Stili */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 2px solid var(--primary-color);
+}
+
+.primary-btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px dashed var(--secondary-color);
+    font-size: 0.8em;
+    color: var(--secondary-color);
+}
+
+/* Ek Animasyonlar: Glitch Efekti (Opsiyonel olarak kullanılabilir) */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.glitch-text {
+    display: inline-block;
+    animation: glitch 1s infinite alternate;
+}
+
+/* --------------------
+   Responsive Tasarım
+   -------------------- */
+@media (max-width: 768px) {
+    
+    /* Navigasyonu dikey yap veya açılır menüye çevir */
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .container {
+        padding: 30px 15px;
+    }
+
+    .skills-grid, .projects-grid, .blog-grid {
+        grid-template-columns: 1fr; /* Tek sütun */
+    }
+}
